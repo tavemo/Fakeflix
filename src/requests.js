@@ -1,17 +1,20 @@
 import { getOneMonthAgoReleaseDate } from "./utils";
 
-export const GITHUB_BASE_URL = "https://github.com/Th3Wall";
-export const GITHUB_AVATAR_URL = "https://avatars.githubusercontent.com/u/25078541?v=4";
-const GITHUB_ASSETS_BASE_URL = "https://cdn.jsdelivr.net/gh/Th3Wall/assets-cdn/Fakeflix";
+const ASSETS_BASE_URL = "/assets";
 export const LANG = "en-US";
 export const REGION = "US";
 export const BASE_IMG_URL = "https://image.tmdb.org/t/p/original";
-export const FALLBACK_IMG_URL = `${GITHUB_ASSETS_BASE_URL}/Fakeflix_readme.png`;
-export const LOGO_URL = `${GITHUB_ASSETS_BASE_URL}/Fakeflix_logo.png`;
-export const MOBILE_LOGO_URL = `${GITHUB_ASSETS_BASE_URL}/Fakeflix_favicon_192.png`;
-export const PROFILE_PIC_URL = `${GITHUB_ASSETS_BASE_URL}/Fakeflix_profilepic.png`;
-export const SIGNIN_BGIMG_URL = `${GITHUB_ASSETS_BASE_URL}/Fakeflix_auth_bg.jpg`;
-export const TADUM_SOUND_URL = `${GITHUB_ASSETS_BASE_URL}/Fakeflix_TaDum.mp3`;
+
+// Asset URLs
+export const LOGO_URL = "/logo/Mockbuster_logo.png";
+export const MOBILE_LOGO_URL = `${ASSETS_BASE_URL}/Mockbuster_favicon_192.png`;
+export const TADUM_SOUND_URL = `${ASSETS_BASE_URL}/Mockbuster_TaDum.mp3`;
+
+// Placeholder images until real ones are available
+const PLACEHOLDER_BASE = "https://via.placeholder.com";
+export const FALLBACK_IMG_URL = `${ASSETS_BASE_URL}/fallback/movie-poster.svg`;
+export const PROFILE_PIC_URL = `${ASSETS_BASE_URL}/profile.png`;
+export const SIGNIN_BGIMG_URL = `${PLACEHOLDER_BASE}/1920x1080/0033A0/FFFFFF?text=Mockbuster+Background`;
 const ONEMONTHAGO = getOneMonthAgoReleaseDate();
 const { REACT_APP_API_KEY } = process.env;
 

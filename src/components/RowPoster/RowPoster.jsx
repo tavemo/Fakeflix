@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 
 const RowPoster = result => {
 	const { item, item: { title, original_name, original_title, name, genre_ids, poster_path, backdrop_path }, isLarge, isFavourite } = result;
-	let fallbackTitle = title || original_title || name || original_name;
+	const fallbackTitle = title || original_title || name || original_name;
 	const genresConverted = useGenreConversion(genre_ids);
 	const dispatch = useDispatch();
 
@@ -21,25 +21,25 @@ const RowPoster = result => {
 		event.stopPropagation();
 		dispatch(removeFromFavourites({ ...item, isFavourite }));
 	};
-	const handleModalOpening = () => {
+	const handleModalOpening = event => {
+		event.stopPropagation();
 		dispatch(showModalDetail({ ...item, fallbackTitle, genresConverted, isFavourite }));
 	}
 	const handlePlayAction = event => {
 		event.stopPropagation();
-
 	};
 
-	return (
-		<div
-			className={`Row__poster ${isLarge && "Row__poster--big"}`}
-			onClick={handleModalOpening}
-		>
-			{isLarge ? (
-				poster_path ? (
-					<img src={`${BASE_IMG_URL}/${poster_path}`} alt={fallbackTitle} />
-				) : ""
-			) : backdrop_path ? (
-				<img src={`${BASE_IMG_URL}/${backdrop_path}`} alt={fallbackTitle} />
+	const handleKeyDown = (event, handler) => {
+		if (event.key === 'Enter' || event.key === ' ') {
+			event.preventDefault();
+			handler(event);
+		}
+	};
+
+	const renderImage = () => {
+		if (isLarge) {
+			return poster_path ? (
+				<img src={`${BASE_IMG_URL}/${poster_path}`} alt={fallbackTitle} />
 			) : (
 				<>
 					<img src={FALLBACK_IMG_URL} alt={fallbackTitle} />
@@ -47,40 +47,81 @@ const RowPoster = result => {
 						<span>{fallbackTitle}</span>
 					</div>
 				</>
-			)}
+			);
+		}
+		return backdrop_path ? (
+			<img src={`${BASE_IMG_URL}/${backdrop_path}`} alt={fallbackTitle} />
+		) : (
+			<>
+				<img src={FALLBACK_IMG_URL} alt={fallbackTitle} />
+				<div className="Row__poster__fallback">
+					<span>{fallbackTitle}</span>
+				</div>
+			</>
+		);
+	};
+
+	return (
+		<button
+			type="button"
+			className={`Row__poster ${isLarge && "Row__poster--big"}`}
+			onClick={handleModalOpening}
+			onKeyDown={(e) => handleKeyDown(e, handleModalOpening)}
+		>
+			{renderImage()}
 			<div className="Row__poster-info">
 				<div className="Row__poster-info--iconswrp">
 					<Link
 						className="Row__poster-info--icon icon--play"
 						onClick={handlePlayAction}
+						onKeyDown={(e) => handleKeyDown(e, handlePlayAction)}
 						to={'/play'}
+						tabIndex={0}
 					>
 						<FaPlay />
 					</Link>
 					{!isFavourite
 						? (
-							<button className='Row__poster-info--icon icon--favourite' onClick={handleAdd}>
+							<button 
+								type="button" 
+								className='Row__poster-info--icon icon--favourite' 
+								onClick={handleAdd}
+								onKeyDown={(e) => handleKeyDown(e, handleAdd)}
+								tabIndex={0}
+							>
 								<FaPlus />
 							</button>
 						): (
-							<button className='Row__poster-info--icon icon--favourite' onClick={handleRemove}>
+							<button 
+								type="button" 
+								className='Row__poster-info--icon icon--favourite' 
+								onClick={handleRemove}
+								onKeyDown={(e) => handleKeyDown(e, handleRemove)}
+								tabIndex={0}
+							>
 								<FaMinus />
 							</button>
 						)}
-					<button className='Row__poster-info--icon icon--toggleModal'>
-						<FaChevronDown onClick={handleModalOpening}/>
+					<button 
+						type="button" 
+						className='Row__poster-info--icon icon--toggleModal'
+						onClick={handleModalOpening}
+						onKeyDown={(e) => handleKeyDown(e, handleModalOpening)}
+						tabIndex={0}
+					>
+						<FaChevronDown />
 					</button>
 				</div>
 				<div className="Row__poster-info--title">
 					<h3>{fallbackTitle}</h3>
 				</div>
 				<div className="Row__poster-info--genres">
-					{genresConverted && genresConverted.map(genre => (
+					{genresConverted?.map(genre => (
 						<span key={`Genre--id_${genre}`} className="genre-title">{genre}</span>
 					))}
 				</div>
 			</div>
-		</div>
+		</button>
 	);
 };
 

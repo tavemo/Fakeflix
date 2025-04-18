@@ -1,6 +1,9 @@
 @import '../../scss/mixin';
 @import "../../scss/variables";
 
+$blockbuster-blue: #0033A0;
+$blockbuster-yellow: #FFD700;
+
 .Poster {
     position: relative;
     overflow: hidden;
@@ -159,12 +162,21 @@
 
             &:first-child {
                 margin-left: 0;
-                background: $white;
-                color: $black;
+                background: $blockbuster-blue;
+                color: $white;
+                border-color: $blockbuster-blue;
 
                 &:hover {
-                    background: rgba($white, 0.7);
-                    border-color: rgba($white, 0.7);
+                    background: darken($blockbuster-blue, 10%);
+                    border-color: darken($blockbuster-blue, 10%);
+                }
+            }
+
+            &.icon--favourite {
+                &:hover {
+                    background: $blockbuster-yellow;
+                    color: $black;
+                    border-color: $blockbuster-yellow;
                 }
             }
         }

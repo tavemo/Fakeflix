@@ -39,7 +39,7 @@ const Navbar = () => {
 				animate="visible"
 				exit="hidden"
 			>
-				<Link to="/">
+				<Link to="/browse">
 					<img className="Navbar__logo" src={width >= 600 ? LOGO_URL : MOBILE_LOGO_URL} alt="" />
 				</Link>
 				{width >= 1024 ? (

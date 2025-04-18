@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux";
 import { Route, Switch, Redirect, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
@@ -19,15 +19,39 @@ import { selectSearchResults } from "./redux/search/search.selectors";
 import { checkUserSession } from "./redux/auth/auth.actions";
 
 const App = () => {
-
+    const [isLoading, setIsLoading] = useState(true);
     const currentUser = useSelector(selectCurrentUser);
     const searchResults = useSelector(selectSearchResults);
     const dispatch = useDispatch();
     const location = useLocation();
 
     useEffect(() => {
-        dispatch(checkUserSession());
-    }, [dispatch])
+        const checkAuth = async () => {
+            await dispatch(checkUserSession());
+            setIsLoading(false);
+        };
+        checkAuth();
+    }, [dispatch]);
+
+    // Show nothing until auth is checked
+    if (isLoading) {
+        return (
+            <div style={{ 
+                position: 'fixed', 
+                top: 0, 
+                left: 0, 
+                width: '100%', 
+                height: '100%', 
+                backgroundColor: '#000',
+                zIndex: 9999 
+            }} />
+        );
+    }
+
+    // If user is logged in and on login page, redirect to splash
+    if (currentUser && location.pathname === '/login') {
+        return <Redirect to="/splash" />;
+    }
 
     return (
         <div className="App">
@@ -43,7 +67,7 @@ const App = () => {
                         exact
                         path="/"
                     >
-                        <Redirect to="/login" />
+                        <Redirect to={currentUser ? "/splash" : "/login"} />
                     </Route>
                     <Route
                         path="/splash"

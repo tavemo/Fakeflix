@@ -1,0 +1,66 @@
+@import "../../scss/variables";
+
+$blockbuster-blue: #0033A0;
+$blockbuster-yellow: #FFD700;
+
+#SplashAnimation__wrp {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: #000;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+	z-index: 900;
+}
+
+.SplashAnimation__bars {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	pointer-events: none;
+
+	.left,
+	.right {
+		position: absolute;
+		width: 30vw;
+		height: 100%;
+		background: rgba($blockbuster-blue, 0.1);
+		filter: blur(5px);
+		transform: scaleY(1.05);
+		animation: barFade 5s ease-out forwards;
+	}
+
+	.left {
+		left: 0;
+	}
+
+	.right {
+		right: 0;
+	}
+}
+
+.SplashAnimation__logo {
+	z-index: 10;
+	width: 300px;
+	max-width: 80%;
+	filter: drop-shadow(0 0 12px rgba($blockbuster-yellow, 0.6));
+}
+
+@keyframes barFade {
+	0% {
+		opacity: 0;
+		transform: scaleY(1.5);
+	}
+	50% {
+		opacity: 0.5;
+		transform: scaleY(1);
+	}
+	100% {
+		opacity: 0;
+		transform: scaleY(0.8);
+	}
+}

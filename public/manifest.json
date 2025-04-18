@@ -1,25 +1,51 @@
 {
-	"short_name": "Fakeflix",
-	"name": "Fakeflix",
+	"short_name": "Mockbuster",
+	"name": "Mockbuster - Your Nostalgic Movie Streaming Experience",
+	"description": "Experience the nostalgia of Blockbuster with Mockbuster! Stream your favorite movies and TV shows in a retro-inspired interface.",
 	"icons": [
 		{
-			"src": "Fakeflix_favicon_64.ico",
-			"sizes": "64x64 32x32 24x24 16x16",
-			"type": "image/x-icon"
+			"src": "assets/favicon.png",
+			"sizes": "64x64",
+			"type": "image/png",
+			"purpose": "any"
 		},
 		{
-			"src": "Fakeflix_favicon_192.png",
+			"src": "assets/Mockbuster_favicon_192.png",
 			"type": "image/png",
-			"sizes": "192x192"
+			"sizes": "192x192",
+			"purpose": "any maskable"
 		},
 		{
-			"src": "Fakeflix_favicon_512.png",
+			"src": "assets/Mockbuster_favicon_512.png",
 			"type": "image/png",
-			"sizes": "512x512"
+			"sizes": "512x512",
+			"purpose": "any maskable"
 		}
 	],
 	"start_url": ".",
+	"scope": "/",
 	"display": "standalone",
-	"theme_color": "#e50914",
-	"background_color": "#141414"
+	"orientation": "portrait",
+	"theme_color": "#0033A0",
+	"background_color": "#000000",
+	"categories": ["entertainment", "movies", "tv"],
+	"lang": "en-US",
+	"dir": "ltr",
+	"prefer_related_applications": false,
+	"shortcuts": [
+		{
+			"name": "Browse Movies",
+			"short_name": "Movies",
+			"description": "Browse our movie collection",
+			"url": "/movies",
+			"icons": [{ "src": "assets/favicon.png", "sizes": "64x64" }]
+		},
+		{
+			"name": "Browse TV Shows",
+			"short_name": "TV Shows",
+			"description": "Browse our TV show collection",
+			"url": "/tvseries",
+			"icons": [{ "src": "assets/favicon.png", "sizes": "64x64" }]
+		}
+	]
 }
