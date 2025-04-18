@@ -39,7 +39,10 @@ const RowPoster = result => {
 	const renderImage = () => {
 		if (isLarge) {
 			return poster_path ? (
-				<img src={`${BASE_IMG_URL}/${poster_path}`} alt={fallbackTitle} />
+				<img src={`${BASE_IMG_URL}/${poster_path}`} alt={fallbackTitle} onError={(e) => {
+					e.target.onerror = null;
+					e.target.src = FALLBACK_IMG_URL;
+				}} />
 			) : (
 				<>
 					<img src={FALLBACK_IMG_URL} alt={fallbackTitle} />
@@ -50,7 +53,10 @@ const RowPoster = result => {
 			);
 		}
 		return backdrop_path ? (
-			<img src={`${BASE_IMG_URL}/${backdrop_path}`} alt={fallbackTitle} />
+			<img src={`${BASE_IMG_URL}/${backdrop_path}`} alt={fallbackTitle} onError={(e) => {
+				e.target.onerror = null;
+				e.target.src = FALLBACK_IMG_URL;
+			}} />
 		) : (
 			<>
 				<img src={FALLBACK_IMG_URL} alt={fallbackTitle} />

@@ -1,0 +1,38 @@
+[build]
+  command = "npm install --legacy-peer-deps && npm run build"
+  publish = "build"
+  functions = "functions"
+
+[build.environment]
+  NODE_VERSION = "20"
+  NPM_VERSION = "9"
+
+[context.production.environment]
+  REACT_APP_TMDB_API_KEY = "@tmdb_api_key"
+  REACT_APP_FIREBASE_API_KEY = "@firebase_api_key"
+  REACT_APP_FIREBASE_AUTH_DOMAIN = "@firebase_auth_domain"
+  REACT_APP_FIREBASE_PROJECT_ID = "@firebase_project_id"
+  REACT_APP_FIREBASE_STORAGE_BUCKET = "@firebase_storage_bucket"
+  REACT_APP_FIREBASE_MESSAGING_SENDER_ID = "@firebase_messaging_sender_id"
+  REACT_APP_FIREBASE_APP_ID = "@firebase_app_id"
+  REACT_APP_FIREBASE_MEASUREMENT_ID = "@firebase_measurement_id"
+
+[context.deploy-preview]
+  command = "npm install --legacy-peer-deps && npm run build"
+
+[context.branch-deploy]
+  command = "npm install --legacy-peer-deps && npm run build"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Content-Security-Policy = "default-src 'self' https://*.tmdb.org https://*.firebaseio.com https://*.googleapis.com https://*.google.com https://*.gstatic.com; img-src 'self' https://*.tmdb.org data:; media-src 'self' https://*.tmdb.org; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.firebaseio.com https://*.googleapis.com https://*.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://*.tmdb.org https://*.firebaseio.com https://*.googleapis.com" 

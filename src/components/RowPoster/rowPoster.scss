@@ -33,6 +33,7 @@ $blockbuster-yellow: #FFD700;
 		width: 100%;
 		border-radius: 4px;
 		object-fit: cover;
+		background: black;
 	}
 
 	&__fallback {
@@ -46,7 +47,7 @@ $blockbuster-yellow: #FFD700;
 		width: 100%;
 		min-width: 100%;
 		min-height: 150px;
-		border-radius: 5px;
+		border-radius: 4px;
 		text-align: center;
 		font-weight: 500;
 		z-index: 1;
@@ -83,7 +84,7 @@ $blockbuster-yellow: #FFD700;
 		padding: 0.6em;
 		opacity: 0;
 		z-index: 2;
-		border-radius: 5px;
+		border-radius: 4px;
 		pointer-events: none;
 		transition: all .4s ease .15s;
 
@@ -241,7 +242,7 @@ $blockbuster-yellow: #FFD700;
 			left: 0;
 			width: 100%;
 			height: 100%;
-			border-radius: 5px;
+			border-radius: 4px;
 			background: linear-gradient(360deg, rgba(0, 0, 0, 0.6) 0%, transparent 65%);
 			z-index: 0;
 			opacity: 0;
