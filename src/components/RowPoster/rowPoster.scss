@@ -11,6 +11,15 @@ $blockbuster-yellow: #FFD700;
 	cursor: pointer;
 	background: black;
 	border-radius: 4px;
+	transform: translateZ(0);
+	backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
+	-moz-backface-visibility: hidden;
+	-ms-backface-visibility: hidden;
+	padding: 0;
+	margin: 0;
+	border: none;
+	outline: none;
 
 	&:last-of-type {
 		img {
@@ -21,6 +30,7 @@ $blockbuster-yellow: #FFD700;
 	&--wrp {
 		display: flex;
 		position: relative;
+		gap: 0.5rem;
 
 		&::-webkit-scrollbar {
 			display: none;
@@ -34,6 +44,20 @@ $blockbuster-yellow: #FFD700;
 		border-radius: 4px;
 		object-fit: cover;
 		background: black;
+		transform: translateZ(0);
+		backface-visibility: hidden;
+		-webkit-backface-visibility: hidden;
+		-moz-backface-visibility: hidden;
+		-ms-backface-visibility: hidden;
+		image-rendering: -webkit-optimize-contrast;
+		image-rendering: crisp-edges;
+		-ms-interpolation-mode: nearest-neighbor;
+		margin: 0;
+		padding: 0;
+		position: relative;
+		z-index: 1;
+		border: none;
+		outline: none;
 	}
 
 	&__fallback {
@@ -55,6 +79,14 @@ $blockbuster-yellow: #FFD700;
 		background: $blockbuster-blue;
 		color: white;
 		text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+		transform: translateZ(0);
+		backface-visibility: hidden;
+		-webkit-backface-visibility: hidden;
+		-moz-backface-visibility: hidden;
+		-ms-backface-visibility: hidden;
+		margin: 0;
+		border: none;
+		outline: none;
 
 		span {
 			font-size: 1.2em;
@@ -87,6 +119,14 @@ $blockbuster-yellow: #FFD700;
 		border-radius: 4px;
 		pointer-events: none;
 		transition: all .4s ease .15s;
+		transform: translateZ(0);
+		backface-visibility: hidden;
+		-webkit-backface-visibility: hidden;
+		-moz-backface-visibility: hidden;
+		-ms-backface-visibility: hidden;
+		margin: 0;
+		border: none;
+		outline: none;
 
 		@include mq('md') {
 			pointer-events: all;
@@ -161,6 +201,7 @@ $blockbuster-yellow: #FFD700;
 				font-size: 12px;
 				font-weight: 600;
 				text-transform: none;
+				color: $white;
 
 				@include mq('lg') {
 					font-size: 15px;
@@ -179,6 +220,7 @@ $blockbuster-yellow: #FFD700;
 				font-size: 10px;
 				margin-top: 0.3vw;
 				margin-bottom: 0;
+				color: $white;
 
 				@include mq('lg') {
 					font-size: 13px;
@@ -203,6 +245,7 @@ $blockbuster-yellow: #FFD700;
 				width: auto;
 				font-size: 8px;
 				margin: 0 0.3vw 0 0;
+				color: $white;
 
 				@include mq('lg') {
 					font-size: 10px;
@@ -247,6 +290,11 @@ $blockbuster-yellow: #FFD700;
 			z-index: 0;
 			opacity: 0;
 			transition: opacity 0.2s ease-out;
+			transform: translateZ(0);
+			backface-visibility: hidden;
+			-webkit-backface-visibility: hidden;
+			-moz-backface-visibility: hidden;
+			-ms-backface-visibility: hidden;
 		}
 	}
 	@include mq('md') {
