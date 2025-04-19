@@ -46,5 +46,14 @@ module.exports = {
       version: 'detect'
     }
   },
-  ignorePatterns: ['**/*.min.js', '**/dist/*', '**/build/*', 'node_modules']
+  ignorePatterns: [
+    '**/*.min.js',
+    '**/*.min.*',
+    '**/dist/*',
+    '**/build/*',
+    'node_modules',
+    'public/*',
+    'coverage/*',
+    '*.bundle.js'
+  ]
 }; 

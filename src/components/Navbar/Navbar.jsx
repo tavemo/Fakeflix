@@ -30,6 +30,11 @@ const Navbar = () => {
 		if (profileNav) setProfileNav(false);
 	});
 
+	const handleSignOut = () => {
+		dispatch(signOutStart());
+		setProfileNav(false);
+	};
+
 	return (
 		<>
 			<motion.nav
@@ -40,7 +45,7 @@ const Navbar = () => {
 				exit="hidden"
 			>
 				<Link to="/browse">
-					<img className="Navbar__logo" src={width >= 600 ? LOGO_URL : MOBILE_LOGO_URL} alt="" />
+					<img className="Navbar__logo" src={width >= 600 ? LOGO_URL : MOBILE_LOGO_URL} alt="Fakeflix logo" />
 				</Link>
 				{width >= 1024 ? (
 					<ul className="Navbar__primarynav Navbar__navlinks">
@@ -73,10 +78,22 @@ const Navbar = () => {
 				) : (
 					<div
 						className={`Navbar__primarynav Navbar__navlinks ${isScrolled && "Navbar__primarynav--scrolled"}`}
-						onClick={() => setGenresNav(!genresNav)}
 					>
-						<span className="Navbar__navlinks--link">Discover</span>
-						<FaCaretDown className="Navbar__primarynav--toggler Navbar__primarynav--caret" />
+						<button
+							className="Navbar__navlinks--button"
+							onClick={() => setGenresNav(!genresNav)}
+							onKeyDown={(e) => {
+								if (e.key === 'Enter' || e.key === ' ') {
+									setGenresNav(!genresNav);
+								}
+							}}
+							type="button"
+							aria-expanded={genresNav}
+							aria-label="Toggle navigation menu"
+						>
+							<span className="Navbar__navlinks--link">Discover</span>
+							<FaCaretDown className="Navbar__primarynav--toggler Navbar__primarynav--caret" />
+						</button>
 						<div
 							className={`Navbar__primarynav--content ${genresNav ? "active" : ""}`}
 						>
@@ -122,14 +139,26 @@ const Navbar = () => {
 					<div className="Navbar__navitem">
 						<div
 							className={`Navbar__navprofile ${profileNav && "active"}`}
-							onClick={() => setProfileNav(!profileNav)}
 						>
-							<img
-								className="Navbar__navprofile--avatar Navbar__navprofile--toggler"
-								src={currentUser && currentUser.photoURL ? currentUser.photoURL : PROFILE_PIC_URL}
-								alt="Profile Picture"
-							/>
-							<FaCaretDown className="Navbar__navprofile--toggler Navbar__navprofile--caret" />
+							<button
+								className="Navbar__navprofile--button"
+								onClick={() => setProfileNav(!profileNav)}
+								onKeyDown={(e) => {
+									if (e.key === 'Enter' || e.key === ' ') {
+										setProfileNav(!profileNav);
+									}
+								}}
+								type="button"
+								aria-expanded={profileNav}
+								aria-label="Toggle profile menu"
+							>
+								<img
+									className="Navbar__navprofile--avatar Navbar__navprofile--toggler"
+									src={currentUser?.photoURL ?? PROFILE_PIC_URL}
+									alt="Account menu"
+								/>
+								<FaCaretDown className="Navbar__navprofile--toggler Navbar__navprofile--caret" />
+							</button>
 							<div className={`Navbar__navprofile--content ${profileNav ? "active" : ""}`}>
 								{profileNav && (
 									<ul
@@ -137,11 +166,19 @@ const Navbar = () => {
 										ref={profileNavRef}
 									>
 										{currentUser && (
-											<li
-												className="Navbar__navlinks--link"
-												onClick={() => dispatch(signOutStart())}
-											>
-												Sign Out
+											<li className="Navbar__navlinks--link">
+												<button
+													className="Navbar__navprofile--btn"
+													onClick={handleSignOut}
+													onKeyDown={(e) => {
+														if (e.key === 'Enter' || e.key === ' ') {
+															handleSignOut();
+														}
+													}}
+													type="button"
+												>
+													Sign Out
+												</button>
 											</li>
 										)}
 									</ul>

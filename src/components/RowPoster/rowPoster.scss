@@ -16,7 +16,7 @@ $blockbuster-yellow: #FFD700;
 	-webkit-backface-visibility: hidden;
 	-moz-backface-visibility: hidden;
 	-ms-backface-visibility: hidden;
-	padding: 0;
+	padding: 0 3px;
 	margin: 0;
 	border: none;
 	outline: none;
@@ -31,6 +31,7 @@ $blockbuster-yellow: #FFD700;
 		display: flex;
 		position: relative;
 		gap: 0.5rem;
+		margin-bottom: 4vw;
 
 		&::-webkit-scrollbar {
 			display: none;
